@@ -1,0 +1,44 @@
+problem = '''
+ Given a list of words (mixed case). Group those words into anagram groups and
+ return the words in larger anagram groups come before words in smaller anagram sets.
+
+ With in an anagram group, order them in case insensitive ascending sorting order.
+
+ If 2 anagram groups have same count, then set with smaller starting word comes first.
+
+ For e.g. if source contains (ant, Tan, cat, TAC, Act, bat, Tab), the anagram groups are (ant, Tan), (bat, Tab)
+ and (Act, cat, TAC) and destination should contain Act, cat, TAC, ant, Tan, bat, Tab (one word in each line).
+ the (ant, Tan) set comes before (bat, Tab) as ant < bat.
+
+'''
+
+lst1 = ["ant", "Tan", "cat", "TAC", "Act", "bat", "Tab"]
+
+def func(lst1):
+  #lst2 = list(map(str.lower,lst1))
+  #print(lst2)
+  lst2=[]
+  for i in lst1:
+    lst2.append(i.lower())
+  #print(lst2)
+  
+  anag={}
+  for j in lst2:
+    #print(''.join(sorted(j)))
+    if ''.join(sorted(j)) in anag:
+      anag[''.join(sorted(j))].append(j)
+    else:
+      anag[''.join(sorted(j))]=[j]
+  #print(anag)
+  
+  for k in anag.values():
+    k.sort()
+  #print(anag)
+
+  """for n in sorted(anag,key = lambda m :len(anag[m]), reverse = True):
+    print (n)"""
+  anag = {k: v for k, v in sorted(anag.items(), key=lambda t: len(t[1]),reverse=True)}
+  return(anag)
+
+res=func(lst1)
+print(res)
