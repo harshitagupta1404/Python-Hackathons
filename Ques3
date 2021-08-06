@@ -1,0 +1,22 @@
+# reversing the words of sentence keeping spaces in place
+
+
+s = "My name is      Harshita"
+temp = ""
+res = ""
+i=0
+length = len(s)
+while i<length:
+    while i<length and s[i]!= " ":
+        #print (i)
+        temp = temp+s[i]
+        #print (temp)
+        i=i+1
+    res = res + temp[::-1]
+    #print (res)
+    temp=""
+    while i<length and s[i]==" ":
+        res = res + " "
+        i = i+1
+
+print (res)
